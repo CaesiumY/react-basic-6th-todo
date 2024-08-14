@@ -15,33 +15,26 @@ const SAMPLE_TODOS = [
 
 const TodoList = () => {
   const [todos, setTodos] = useState(SAMPLE_TODOS);
-  const [newTodo, setNewTodo] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!newTodo.trim()) {
+    const formData = new FormData(event.target);
+    const todoText = formData.get("todo");
+
+    if (!todoText.trim()) {
       return;
     }
 
-    setTodos([{ id: crypto.randomUUID(), text: newTodo }, ...todos]);
+    setTodos([{ id: crypto.randomUUID(), text: todoText }, ...todos]);
 
-    setNewTodo("");
-  };
-
-  const handleInputChange = (event) => {
-    setNewTodo(event.target.value);
+    event.target.reset();
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="todo"
-          value={newTodo}
-          onChange={handleInputChange}
-        />
+        <input type="text" name="todo" />
         <button type="submit">Add Todo</button>
       </form>
       <ul>
