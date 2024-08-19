@@ -56,6 +56,13 @@ const TodoList = () => {
     setTodos(updatedTodos);
   };
 
+  // const toggleCompleted = (id) =>
+  //   setTodos((prevTodos) =>
+  //     prevTodos.map((todo) =>
+  //       todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  //     )
+  //   );
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
