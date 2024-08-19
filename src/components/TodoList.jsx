@@ -40,9 +40,7 @@ const TodoList = () => {
   };
 
   const toggleCompleted = (id) => {
-    const updatedTodos = [];
-
-    todos.forEach((todo) => {
+    const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
         const newTodo = {
           id: todo.id,
@@ -50,10 +48,10 @@ const TodoList = () => {
           completed: !todo.completed,
         };
 
-        return updatedTodos.push(newTodo);
+        return newTodo;
       }
 
-      updatedTodos.push(todo);
+      return todo;
     });
 
     setTodos(updatedTodos);
