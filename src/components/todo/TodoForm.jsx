@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import styled from "styled-components";
+import { TaskItemActionButton } from "./TodoItem";
+import { TodoContext } from "../../context/TodoContext";
 
-const TodoForm = ({ addTodos }) => {
+const TodoForm = () => {
+  const { addTodos } = useContext(TodoContext);
   const [newTodo, setNewTodo] = useState("");
 
   const handleSubmit = (event) => {
@@ -26,16 +30,42 @@ const TodoForm = ({ addTodos }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <TaskForm onSubmit={handleSubmit}>
+      <TaskInput
         type="text"
         name="todo"
         value={newTodo}
         onChange={handleInputChange}
       />
-      <button type="submit">Add Todo</button>
-    </form>
+      <TaskButton type="submit" color="#582be7">
+        추가하기
+      </TaskButton>
+    </TaskForm>
   );
 };
 
 export default TodoForm;
+
+const TaskForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+`;
+
+const TaskInput = styled.input`
+  flex: 1;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  outline: none;
+  font-size: 1rem;
+  color: #333333;
+  background-color: #ffffff;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: #582be7;
+  }
+`;
+
+const TaskButton = styled(TaskItemActionButton)``;

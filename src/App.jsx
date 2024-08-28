@@ -1,10 +1,14 @@
+import RootLayout from "./components/layout/RootLayout";
 import TodoContainer from "./components/todo/TodoContainer";
+import TodoProvider from "./context/TodoContext";
 
 const App = () => {
   return (
-    <main className="main-center">
-      <TodoContainer />
-    </main>
+    <RootLayout>
+      <TodoProvider>
+        <TodoContainer />
+      </TodoProvider>
+    </RootLayout>
   );
 };
 
