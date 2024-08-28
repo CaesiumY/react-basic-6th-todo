@@ -1,7 +1,15 @@
 import { ClipboardCheck, Ellipsis, Monitor, Video } from "lucide-react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { TodoContext } from "../../context/TodoContext";
 
-const TodoDashboard = ({ all = 0, completed = 0, pending = 0 }) => {
+const TodoDashboard = () => {
+  const { todos } = useContext(TodoContext);
+
+  const all = todos.length;
+  const completed = 7;
+  const pending = 3;
+
   return (
     <DashboardSection>
       <DashboardHeader>

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { TaskItemActionButton } from "./TodoItem";
+import { TodoContext } from "../../context/TodoContext";
 
-const TodoForm = ({ addTodos }) => {
+const TodoForm = () => {
+  const { addTodos } = useContext(TodoContext);
   const [newTodo, setNewTodo] = useState("");
 
   const handleSubmit = (event) => {
