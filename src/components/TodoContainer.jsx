@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TODO_SAMPLE } from "../constants/todo-sample";
+import TodoList from "./TodoList";
 
 const TodoContainer = () => {
   const [todos, setTodos] = useState(TODO_SAMPLE); // 할 일 목록을 저장할 상태
@@ -60,6 +61,12 @@ const TodoContainer = () => {
         />
         <button type="submit">추가</button>
       </form>
+
+      <TodoList
+        todos={todos}
+        onToggleCompleted={onToggleCompleted}
+        onDelete={onDelete}
+      />
     </div>
   );
 };
