@@ -37,9 +37,9 @@ const TodoForm = () => {
         value={newTodo}
         onChange={handleInputChange}
       />
-      <TaskButton type="submit" color="#582be7">
+      <TaskSubmitButton type="submit" color="#582be7">
         추가하기
-      </TaskButton>
+      </TaskSubmitButton>
     </TaskForm>
   );
 };
@@ -68,4 +68,4 @@ const TaskInput = styled.input`
   }
 `;
 
-const TaskButton = styled(TaskItemActionButton)``;
+const TaskSubmitButton = styled(TaskItemActionButton)``;
