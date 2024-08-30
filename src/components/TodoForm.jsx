@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TodoContext } from "../context/TodoContext";
 
-const TodoForm = ({ addTodo }) => {
+const TodoForm = () => {
+  const { addTodo } = useContext(TodoContext);
   const [text, setText] = useState("");
 
   const onSubmit = (e) => {

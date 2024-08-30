@@ -1,4 +1,9 @@
-const TodoItem = ({ todo, onToggleCompleted, onDelete }) => {
+import { useContext } from "react";
+import { TodoContext } from "../context/TodoContext";
+
+const TodoItem = ({ todo }) => {
+  const { onToggleCompleted, onDelete } = useContext(TodoContext);
+
   return (
     <li key={todo.id}>
       {todo.text}-{todo.isCompleted ? "완료" : "미완료"}
