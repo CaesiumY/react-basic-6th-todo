@@ -1,5 +1,11 @@
+import TodoContainer from "./components/TodoContainer";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <TodoContainer />
+    </div>
+  );
 };
 
 export default App;
