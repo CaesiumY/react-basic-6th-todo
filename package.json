@@ -13,6 +13,7 @@
     "lucide-react": "^0.436.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
     "styled-components": "^6.1.12",
     "the-new-css-reset": "^1.11.3"
   },
