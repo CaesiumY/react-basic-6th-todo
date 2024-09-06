@@ -4,11 +4,7 @@ import styled from "styled-components";
 import { TodoContext } from "../../context/TodoContext";
 
 const TodoDashboard = () => {
-  const { todos } = useContext(TodoContext);
-
-  const all = todos.length;
-  const completed = 7;
-  const pending = 3;
+  const { todos, completedTodos, pendingTodos } = useContext(TodoContext);
 
   return (
     <DashboardSection>
@@ -23,7 +19,7 @@ const TodoDashboard = () => {
             <Ellipsis />
           </div>
           <p>
-            {all} <br /> All Task
+            {todos.length} <br /> All Task
           </p>
         </DashboardCard>
         <DashboardCard flex="1" color="#582be7">
@@ -32,7 +28,7 @@ const TodoDashboard = () => {
             <Ellipsis />
           </div>
           <p>
-            {completed} <br /> Completed
+            {completedTodos.length} <br /> Completed
           </p>
         </DashboardCard>
         <DashboardCard flex="1" color="#242424">
@@ -41,7 +37,7 @@ const TodoDashboard = () => {
             <Ellipsis />
           </div>
           <p>
-            {pending} <br /> Pending
+            {pendingTodos.length} <br /> Pending
           </p>
         </DashboardCard>
       </DashboardCardList>
