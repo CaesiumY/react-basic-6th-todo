@@ -2,6 +2,7 @@ import { ClipboardCheck, Ellipsis, Monitor, Video } from "lucide-react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { TodoContext } from "../../context/TodoContext";
+import { Link } from "react-router-dom";
 
 const TodoDashboard = () => {
   const { todos, completedTodos, pendingTodos } = useContext(TodoContext);
@@ -13,7 +14,7 @@ const TodoDashboard = () => {
       </DashboardHeader>
 
       <DashboardCardList>
-        <DashboardCard flex="2" color="#e7582b">
+        <DashboardCard flex="2" color="#e7582b" to={"/"}>
           <div>
             <ClipboardCheck />
             <Ellipsis />
@@ -22,7 +23,7 @@ const TodoDashboard = () => {
             {todos.length} <br /> All Task
           </p>
         </DashboardCard>
-        <DashboardCard flex="1" color="#582be7">
+        <DashboardCard flex="1" color="#582be7" to={"?filter=completed"}>
           <div>
             <Monitor />
             <Ellipsis />
@@ -31,7 +32,7 @@ const TodoDashboard = () => {
             {completedTodos.length} <br /> Completed
           </p>
         </DashboardCard>
-        <DashboardCard flex="1" color="#242424">
+        <DashboardCard flex="1" color="#242424" to={"?filter=pending"}>
           <div>
             <Video />
             <Ellipsis />
@@ -67,7 +68,7 @@ const DashboardCardList = styled.div`
   width: 100%;
 `;
 
-const DashboardCard = styled.div`
+const DashboardCard = styled(Link)`
   background-color: ${({ color }) => color};
   padding: 1rem;
   border-radius: 1rem;
