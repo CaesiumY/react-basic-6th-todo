@@ -24,9 +24,19 @@ const TodoProvider = ({ children }) => {
     navigate("/");
   };
 
+  const completedTodos = todos.filter((todo) => todo.completed);
+  const pendingTodos = todos.filter((todo) => !todo.completed);
+
   return (
     <TodoContext.Provider
-      value={{ todos, addTodos, toggleCompleted, handleDelete }}
+      value={{
+        todos,
+        addTodos,
+        toggleCompleted,
+        handleDelete,
+        completedTodos,
+        pendingTodos,
+      }}
     >
       {children}
     </TodoContext.Provider>
