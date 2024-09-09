@@ -28,8 +28,10 @@ const TodoProvider = ({ children }) => {
     fetchTodos();
   };
 
-  const handleDelete = (id) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  const handleDelete = async (id) => {
+    await todoClient.delete(`/${id}`);
+    fetchTodos();
+
     navigate("/");
   };
 
@@ -44,6 +46,7 @@ const TodoProvider = ({ children }) => {
     <TodoContext.Provider
       value={{
         todos,
+        fetchTodos,
         addTodos,
         toggleCompleted,
         handleDelete,
