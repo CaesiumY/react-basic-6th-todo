@@ -1,14 +1,19 @@
 {
   "todos": [
-    { "id": "1", "text": "Buy milk", "completed": false },
-    { "id": "2", "text": "Clean the house", "completed": false },
-    { "id": "3", "text": "Go for a run", "completed": false },
-    { "id": "4", "text": "Finish homework", "completed": false },
-    { "id": "5", "text": "Call mom", "completed": false },
-    { "id": "6", "text": "Buy groceries", "completed": false },
-    { "id": "7", "text": "Walk the dog", "completed": false },
-    { "id": "8", "text": "Read a book", "completed": false },
-    { "id": "9", "text": "Do laundry", "completed": false },
-    { "id": "10", "text": "Write code", "completed": false }
+    {
+      "id": "bd206e83-c8ce-4048-8fdb-0d478feb66cf",
+      "text": "햄부기",
+      "completed": false
+    },
+    {
+      "id": "8ef485d8-0a64-4472-a23a-2bc341c01a29",
+      "text": "햄스투",
+      "completed": false
+    },
+    {
+      "id": "f2669cc2-1e49-46e0-a429-e0c7550f196e",
+      "text": "햄스트링",
+      "completed": false
+    }
   ]
 }

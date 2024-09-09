@@ -14,8 +14,10 @@ const TodoProvider = ({ children }) => {
     setTodos(data);
   };
 
-  const addTodos = (newTodoObj) => {
-    setTodos([newTodoObj, ...todos]);
+  const addTodos = async (newTodoObj) => {
+    await todoClient.post("/", newTodoObj);
+
+    fetchTodos();
   };
 
   const toggleCompleted = (id) =>
