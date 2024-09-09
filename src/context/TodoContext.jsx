@@ -20,12 +20,13 @@ const TodoProvider = ({ children }) => {
     fetchTodos();
   };
 
-  const toggleCompleted = (id) =>
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+  const toggleCompleted = async (id, completed) => {
+    await todoClient.patch(`/${id}`, {
+      completed,
+    });
+
+    fetchTodos();
+  };
 
   const handleDelete = (id) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));

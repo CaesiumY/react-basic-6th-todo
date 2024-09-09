@@ -21,7 +21,7 @@ const TodoItem = ({ todo }) => {
 
       <TaskItemActions>
         <TaskItemActionButton
-          onClick={() => toggleCompleted(todo.id)}
+          onClick={() => toggleCompleted(todo.id, !todo.completed)}
           color="#582be7"
         >
           {todo.completed ? "취소" : "완료"}
