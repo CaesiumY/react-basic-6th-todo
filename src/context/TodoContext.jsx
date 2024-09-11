@@ -14,6 +14,12 @@ const TodoProvider = ({ children }) => {
     setTodos(data);
   };
 
+  const fetchTodo = async (id) => {
+    const { data } = await todoClient.get(`/${id}`);
+
+    return data;
+  };
+
   const addTodos = async (newTodoObj) => {
     await todoClient.post("/", newTodoObj);
 
@@ -47,6 +53,7 @@ const TodoProvider = ({ children }) => {
       value={{
         todos,
         fetchTodos,
+        fetchTodo,
         addTodos,
         toggleCompleted,
         handleDelete,
