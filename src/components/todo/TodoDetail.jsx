@@ -1,26 +1,23 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getTodoDetail } from "../../api/todoClient";
 import TodoItem from "./TodoItem";
 
-const TodoDetail = () => {
-  const [todo, setTodo] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const data = await fetchTodo(id);
-      setTodo(data);
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, [fetchTodo, id]);
+const TodoDetail = ({ id }) => {
+  const {
+    data: todo,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["todos", id],
+    queryFn: () => getTodoDetail(id),
+  });
 
   if (isLoading) {
     return <section>Loading...</section>;
+  }
+
+  if (error) {
+    return <section>Error: {error.message}</section>;
   }
 
   if (!todo) {

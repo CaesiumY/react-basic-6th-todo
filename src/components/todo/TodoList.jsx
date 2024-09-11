@@ -1,9 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
+import { getTodos } from "../../api/todoClient";
 import TodoItem from "./TodoItem";
-import { useSearchParams } from "react-router-dom";
 
 const TodoList = () => {
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["todos"],
+    queryFn: getTodos,
+  });
+
+  if (isLoading) {
+    return <TaskSection>Loading...</TaskSection>;
+  }
+
+  if (error) {
+    return <TaskSection>Error: {error.message}</TaskSection>;
+  }
 
   return (
     <TaskSection>
@@ -11,7 +25,7 @@ const TodoList = () => {
         <h1>Tasks</h1>
       </TaskHeader>
       <TaskList>
-        {filteredTodos.map((todo) => (
+        {data.map((todo) => (
           <TodoItem key={todo.id} todo={todo} />
         ))}
       </TaskList>
