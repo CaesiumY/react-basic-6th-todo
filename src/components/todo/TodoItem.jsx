@@ -1,11 +1,7 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { TodoContext } from "../../context/TodoContext";
 import { Link } from "react-router-dom";
 
 const TodoItem = ({ todo }) => {
-  const { toggleCompleted, handleDelete } = useContext(TodoContext);
-
   return (
     <TaskItem key={todo.id}>
       <TaskItemContent>

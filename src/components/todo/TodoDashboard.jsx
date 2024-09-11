@@ -1,11 +1,8 @@
 import { ClipboardCheck, Ellipsis, Monitor, Video } from "lucide-react";
-import { useContext } from "react";
 import styled from "styled-components";
-import { TodoContext } from "../../context/TodoContext";
 import { Link, useSearchParams } from "react-router-dom";
 
 const TodoDashboard = () => {
-  const { todos, completedTodos, pendingTodos } = useContext(TodoContext);
   const [searchParams] = useSearchParams();
   const filter = searchParams.get("filter");
 

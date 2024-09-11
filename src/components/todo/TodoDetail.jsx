@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { TodoContext } from "../../context/TodoContext";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TodoItem from "./TodoItem";
 
@@ -7,7 +6,6 @@ const TodoDetail = () => {
   const [todo, setTodo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { fetchTodo } = useContext(TodoContext);
   const { id } = useParams();
 
   useEffect(() => {
