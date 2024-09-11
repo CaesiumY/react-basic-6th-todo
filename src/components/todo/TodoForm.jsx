@@ -1,9 +1,21 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { TaskItemActionButton } from "./TodoItem";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { postTodo } from "../../api/todoClient";
 
 const TodoForm = () => {
   const [newTodo, setNewTodo] = useState("");
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: (todo) => postTodo(todo),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["todos"],
+      });
+    },
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,12 +25,11 @@ const TodoForm = () => {
     }
 
     const newTodoObj = {
-      id: crypto.randomUUID(),
       text: newTodo,
       completed: false,
     };
 
-    // addTodos(newTodoObj);
+    mutate(newTodoObj);
 
     setNewTodo("");
   };

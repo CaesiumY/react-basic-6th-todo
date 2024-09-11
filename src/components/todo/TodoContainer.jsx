@@ -7,7 +7,7 @@ const TodoContainer = () => {
   return (
     <TodoContainerWrapper>
       <TodoDashboard />
-      {/* <TodoForm /> */}
+      <TodoForm />
       <TodoList />
     </TodoContainerWrapper>
   );
