@@ -1,11 +1,11 @@
 import { ClipboardCheck, Ellipsis, Monitor, Video } from "lucide-react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useGetFilter } from "../../hooks/useGetFilter";
 import { useTodoQuery } from "../../hooks/useTodoQuery";
 
 const TodoDashboard = () => {
-  const [searchParams] = useSearchParams();
-  const filter = searchParams.get("filter");
+  const { filter } = useGetFilter();
 
   const { data: allTodos } = useTodoQuery();
   const { data: completedTodos } = useTodoQuery("completed");

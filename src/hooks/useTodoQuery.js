@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router-dom";
-import { getTodos } from "../api/todoClient";
+import { getTodoDetail, getTodos } from "../api/todoClient";
+import { useGetFilter } from "./useGetFilter";
 
 export const useTodoFilteredQuery = () => {
-  const [searchParams] = useSearchParams();
-  const filter = searchParams.get("filter");
+  const { filter } = useGetFilter();
 
   return useQuery({
     queryKey: ["todos", filter],
@@ -16,5 +15,12 @@ export const useTodoQuery = (filter) => {
   return useQuery({
     queryKey: ["todos", filter],
     queryFn: () => getTodos(filter),
+  });
+};
+
+export const useTodoDetailQuery = (id) => {
+  return useQuery({
+    queryKey: ["todos", id],
+    queryFn: () => getTodoDetail(id),
   });
 };
