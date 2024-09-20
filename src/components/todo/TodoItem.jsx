@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import {
   useDeleteTodoMutation,
   useToggleTodoMutation,
@@ -12,20 +11,26 @@ const TodoItem = ({ todo }) => {
   const { mutate: handleToggle } = useToggleTodoMutation();
 
   return (
-    <TaskItem key={todo.id}>
-      <TaskItemContent>
+    <li
+      key={todo.id}
+      className="flex flex-row justify-between items-center p-4 bg-white rounded-2xl"
+    >
+      <div>
         <p
           style={{
             textDecoration: todo.completed ? "line-through" : "none",
           }}
         >
-          <TaskLink to={`/${todo.id}`}>{todo.text}</TaskLink> -{" "}
-          {todo.completed ? <span>완료됨</span> : <span>미완료</span>}
+          <Link className="hover:underline" to={`/${todo.id}`}>
+            {todo.text}
+          </Link>{" "}
+          - {todo.completed ? <span>완료됨</span> : <span>미완료</span>}
         </p>
-      </TaskItemContent>
+      </div>
 
-      <TaskItemActions>
-        <TaskItemActionButton
+      <div className="flex flex-row gap-4 items-center justify-center">
+        <button
+          className="text-white bg-[#582be7] py-2 px-4 rounded-lg cursor-pointer hover:opacity-80"
           onClick={() =>
             handleToggle({
               id: todo.id,
@@ -35,8 +40,9 @@ const TodoItem = ({ todo }) => {
           color="#582be7"
         >
           {todo.completed ? "취소" : "완료"}
-        </TaskItemActionButton>
-        <TaskItemActionButton
+        </button>
+        <button
+          className="text-white bg-[#f05656] py-2 px-4 rounded-lg cursor-pointer hover:opacity-80"
           onClick={async () => {
             await handleDelete(todo.id);
             navigate("/");
@@ -44,51 +50,10 @@ const TodoItem = ({ todo }) => {
           color="#f05656"
         >
           {isPending ? "삭제 중" : "삭제"}
-        </TaskItemActionButton>
-      </TaskItemActions>
-    </TaskItem>
+        </button>
+      </div>
+    </li>
   );
 };
 
 export default TodoItem;
-
-const TaskItem = styled.li`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: #ffffff;
-`;
-
-const TaskItemContent = styled.div``;
-
-const TaskItemActions = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const TaskItemActionButton = styled.button`
-  color: #ffffff;
-  background-color: ${({ color }) => color};
-
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-
-  cursor: pointer;
-
-  &:hover {
-    opacity: 80%;
-  }
-`;
-
-const TaskLink = styled(Link)`
-  &:hover {
-    text-decoration: underline;
-  }
-`;
