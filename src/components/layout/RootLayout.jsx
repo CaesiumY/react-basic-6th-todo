@@ -5,7 +5,7 @@ import styled from "styled-components";
 const RootLayout = () => {
   return (
     <RootLayoutMain>
-      <RootLayoutContents>
+      <RootLayoutContents className="dark:bg-black">
         <Outlet />
       </RootLayoutContents>
     </RootLayoutMain>
