@@ -13,7 +13,7 @@ const TodoDashboard = () => {
   return (
     <section className="flex flex-col gap-4">
       <div>
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <h1 className="text-2xl font-bold dark:text-white">Dashboard</h1>
       </div>
 
       <div className="flex flex-row gap-2 w-full">

@@ -17,7 +17,7 @@ const TodoList = () => {
   return (
     <section className="flex flex-col gap-4">
       <div>
-        <h1 className="text-2xl font-bold">Tasks</h1>
+        <h1 className="text-2xl font-bold dark:text-white">Tasks</h1>
       </div>
       <ul className="flex flex-col gap-4">
         {data.map((todo) => (
