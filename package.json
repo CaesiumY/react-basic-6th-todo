@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "json-server": "json-server db.json"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.55.4",
     "axios": "^1.7.7",
+    "json-server": "^1.0.0-beta.2",
     "lucide-react": "^0.436.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
