@@ -4,7 +4,11 @@ export const useToastStore = create((set) => ({
   toasts: [
     {
       id: crypto.randomUUID(),
-      content: "hello world!!!",
+      content: "hello world!!! 1",
+    },
+    {
+      id: crypto.randomUUID(),
+      content: "hello 2",
     },
   ],
   addToast: (content) => {

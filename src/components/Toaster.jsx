@@ -4,10 +4,13 @@ const Toaster = () => {
   const { toasts } = useToast();
 
   return (
-    <section>
-      <ul>
+    <section className="fixed z-20 right-4 bottom-24">
+      <ul className="flex flex-col gap-4">
         {toasts.map((toast) => (
-          <li key={toast.id}>
+          <li
+            key={toast.id}
+            className="bg-white p-4 rounded-lg shadow-md min-w-56"
+          >
             <p>{toast.content}</p>
           </li>
         ))}

@@ -17,8 +17,8 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router />
-      <ThemeSwitchButton />
       <Toaster />
+      <ThemeSwitchButton />
     </QueryClientProvider>
   );
 };
