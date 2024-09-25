@@ -1,16 +1,7 @@
 import { create } from "zustand";
 
 export const useToastStore = create((set) => ({
-  toasts: [
-    {
-      id: crypto.randomUUID(),
-      content: "hello world!!! 1",
-    },
-    {
-      id: crypto.randomUUID(),
-      content: "hello 2",
-    },
-  ],
+  toasts: [],
   addToast: (content) => {
     const newToast = {
       id: crypto.randomUUID(),
