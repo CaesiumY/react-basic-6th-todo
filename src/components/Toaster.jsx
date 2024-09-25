@@ -1,7 +1,22 @@
+import { useEffect } from "react";
 import { useToast } from "../hooks/useToast";
 
 const Toaster = () => {
-  const { toasts } = useToast();
+  const { toasts, removeToast } = useToast();
+
+  useEffect(() => {
+    if (toasts.length === 0) return;
+
+    const targetToastId = toasts[0].id;
+
+    const timer = setTimeout(() => {
+      removeToast(targetToastId);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [toasts, removeToast]);
 
   return (
     <section className="fixed z-20 right-4 bottom-24">
