@@ -3,6 +3,7 @@ import Router from "./Router";
 import { useThemeStore } from "./store/useThemeStore";
 import { useEffect } from "react";
 import ThemeSwitchButton from "./components/ThemeSwitchButton";
+import Toaster from "./components/Toaster";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <Router />
       <ThemeSwitchButton />
+      <Toaster />
     </QueryClientProvider>
   );
 };

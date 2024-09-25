@@ -4,7 +4,7 @@ export const useToastStore = create((set) => ({
   toasts: [
     {
       id: crypto.randomUUID(),
-      content: "hello world",
+      content: "hello world!!!",
     },
   ],
   addToast: (content) => {
