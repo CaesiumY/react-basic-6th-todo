@@ -3,8 +3,13 @@ import {
   useDeleteTodoMutation,
   useToggleTodoMutation,
 } from "../../hooks/useTodoMutation";
+import { Todo } from "../../types/todo.type";
 
-const TodoItem = ({ todo }) => {
+interface TodoItemProps {
+  todo: Todo;
+}
+
+const TodoItem = ({ todo }: TodoItemProps) => {
   const navigate = useNavigate();
 
   const { mutateAsync: handleDelete, isPending } = useDeleteTodoMutation();
