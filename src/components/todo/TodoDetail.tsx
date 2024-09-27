@@ -1,7 +1,11 @@
 import { useTodoDetailQuery } from "../../hooks/useTodoQuery";
 import TodoItem from "./TodoItem";
 
-const TodoDetail = ({ id }) => {
+interface TodoDetailProps {
+  id: string;
+}
+
+const TodoDetail = ({ id }: TodoDetailProps) => {
   const { data: todo, isLoading, error } = useTodoDetailQuery(id);
 
   if (isLoading) {

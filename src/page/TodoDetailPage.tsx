@@ -4,6 +4,17 @@ import TodoDetail from "../components/todo/TodoDetail";
 const TodoDetailPage = () => {
   const { id } = useParams();
 
+  if (!id) {
+    return (
+      <div>
+        <p>Not Found Todo!</p>
+        <button className="mt-4 px-4 py-2 border-none rounded-lg bg-black text-white text-base w-full text-center cursor-pointer hover:opacity-70">
+          목록으로
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div>
       <TodoDetail id={id} />

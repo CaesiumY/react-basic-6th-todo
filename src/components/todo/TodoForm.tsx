@@ -5,7 +5,7 @@ const TodoForm = () => {
   const [newTodo, setNewTodo] = useState("");
   const { mutate } = useCreateTodoMutation();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!newTodo.trim()) {
@@ -22,7 +22,7 @@ const TodoForm = () => {
     setNewTodo("");
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodo(event.target.value);
   };
 

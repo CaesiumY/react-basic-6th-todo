@@ -20,7 +20,7 @@ const TodoList = () => {
         <h1 className="text-2xl font-bold dark:text-white">Tasks</h1>
       </div>
       <ul className="flex flex-col gap-4">
-        {data.map((todo) => (
+        {data?.map((todo) => (
           <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
