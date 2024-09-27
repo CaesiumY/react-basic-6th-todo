@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import RootLayout from "./components/layout/RootLayout";
 import HomePage from "./page/HomePage";
 import TodoDetailPage from "./page/TodoDetailPage";
