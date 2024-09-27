@@ -3,3 +3,5 @@ export interface Todo {
   text: string;
   completed: boolean;
 }
+
+export type TodoFilter = "completed" | "pending";
