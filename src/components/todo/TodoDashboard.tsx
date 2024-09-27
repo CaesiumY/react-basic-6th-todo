@@ -6,7 +6,7 @@ import { useTodoQuery } from "../../hooks/useTodoQuery";
 const TodoDashboard = () => {
   const { filter } = useGetFilter();
 
-  const { data: allTodos } = useTodoQuery();
+  const { data: allTodos } = useTodoQuery(null);
   const { data: completedTodos } = useTodoQuery("completed");
   const { data: pendingTodos } = useTodoQuery("pending");
 

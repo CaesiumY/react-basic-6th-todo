@@ -1,6 +1,17 @@
 import { create } from "zustand";
 
-export const useToastStore = create((set) => ({
+interface Toast {
+  id: string;
+  content: string;
+}
+
+interface ToastStore {
+  toasts: Toast[];
+  addToast: (content: string) => void;
+  removeToast: (id: string) => void;
+}
+
+export const useToastStore = create<ToastStore>((set) => ({
   toasts: [],
   addToast: (content) => {
     const newToast = {

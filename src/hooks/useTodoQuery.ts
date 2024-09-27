@@ -12,7 +12,7 @@ export const useTodoFilteredQuery = () => {
   });
 };
 
-export const useTodoQuery = (filter: TodoFilter) => {
+export const useTodoQuery = (filter: TodoFilter | null) => {
   return useQuery({
     queryKey: ["todos", filter],
     queryFn: () => getTodos(filter),
