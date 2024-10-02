@@ -6,10 +6,10 @@ const TodoList = async () => {
 
   return (
     <ul>
-      {todos.map(({ id, completed, text }) => (
+      {todos.map(({ id, completed, title }) => (
         <li key={id}>
           <Link href={`/todo/${id}`}>
-            {text} - {completed ? "완료됨" : "미완료"}
+            {title} - {completed ? "완료됨" : "미완료"}
           </Link>
         </li>
       ))}
