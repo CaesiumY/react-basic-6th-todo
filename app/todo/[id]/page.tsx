@@ -1,4 +1,5 @@
 import { getTodoDetail } from "@/api/todo-api";
+import TodoItem from "@/components/todos/TodoItem";
 import {
   dehydrate,
   HydrationBoundary,
@@ -23,7 +24,7 @@ const TodoDetailPage = async ({ params }: TodoDetailPageProps) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div>TodoDetailPage</div>
+      <TodoItem id={id} />
     </HydrationBoundary>
   );
 };
