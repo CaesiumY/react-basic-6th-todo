@@ -7,7 +7,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-const RootPage = async () => {
+const TodoPage = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
@@ -17,12 +17,16 @@ const RootPage = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
-        <TodoForm />
+      <div className="flex flex-col gap-12">
+        <section>
+          <h1 className="font-black text-4xl">TODO LIST</h1>
+        </section>
+
         <TodoList />
-      </main>
+        {/* <TodoForm /> */}
+      </div>
     </HydrationBoundary>
   );
 };
 
-export default RootPage;
+export default TodoPage;
