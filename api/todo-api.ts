@@ -45,3 +45,21 @@ export const deleteTodo = async (id: string) => {
 
   return todo;
 };
+
+export const toggleTodo = async (id: string, completed: boolean) => {
+  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ completed }),
+  });
+
+  if (!response.ok) {
+    throw new Error("업데이트에 실패했습니다.");
+  }
+
+  const todo: Todo = await response.json();
+
+  return todo;
+};

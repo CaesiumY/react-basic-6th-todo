@@ -1,14 +1,10 @@
 "use client";
 
-import { getTodos } from "@/api/todo-api";
-import { useQuery } from "@tanstack/react-query";
+import { useTodoQuery } from "@/query/useTodoQuery";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
-  const { data: todos, isLoading } = useQuery({
-    queryKey: ["todos"],
-    queryFn: getTodos,
-  });
+  const { data: todos, isLoading } = useTodoQuery();
 
   if (isLoading) return <div>Loading...</div>;
 
