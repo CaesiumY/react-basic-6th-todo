@@ -2,7 +2,7 @@
 
 import { getTodos } from "@/api/todo-api";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
+import TodoItem from "./TodoItem";
 
 const TodoList = () => {
   const { data: todos, isLoading } = useQuery({
@@ -14,11 +14,9 @@ const TodoList = () => {
 
   return (
     <ul>
-      {todos?.map(({ id, completed, title }) => (
-        <li key={id}>
-          <Link href={`/todo/${id}`}>
-            {title} - {completed ? "완료됨" : "미완료"}
-          </Link>
+      {todos?.map((todo) => (
+        <li key={todo.id}>
+          <TodoItem todo={todo} />
         </li>
       ))}
     </ul>
