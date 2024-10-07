@@ -1,4 +1,5 @@
 import { getTodos } from "@/api/todo-api";
+import TodoController from "@/components/todos/TodoController";
 import TodoForm from "@/components/todos/TodoForm";
 
 import TodoList from "@/components/todos/TodoList";
@@ -26,7 +27,10 @@ const TodoPage = async () => {
 
         <Separator />
 
-        <TodoList />
+        <div className="space-y-4">
+          <TodoController />
+          <TodoList />
+        </div>
         <TodoForm />
       </div>
     </HydrationBoundary>
