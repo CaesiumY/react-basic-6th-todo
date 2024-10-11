@@ -1,4 +1,5 @@
 import { getTodos } from "@/api/todo-api";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 import TodoController from "@/components/todos/TodoController";
 import TodoForm from "@/components/todos/TodoForm";
 
@@ -31,8 +32,9 @@ const TodoPage = async () => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="flex flex-col gap-12">
-        <section>
+        <section className="flex flex-row justify-between">
           <h1 className="font-black text-4xl">TODO LIST</h1>
+          <DarkModeToggle />
         </section>
 
         <Separator />

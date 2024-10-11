@@ -33,7 +33,10 @@ const TodoItem = ({ todo }: TodoItemProps) => {
           }
         />
 
-        <Link className="hover:underline" href={`/todo/${todo.id}`}>
+        <Link
+          className="hover:underline dark:text-black"
+          href={`/todo/${todo.id}`}
+        >
           {title}
         </Link>
       </div>
