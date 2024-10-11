@@ -1,7 +1,9 @@
 import { Todo } from "@/types/todo.types";
 
+const BASE_URL = "http://localhost:3000/todos";
+
 export const getTodos = async (filter?: "completed" | "pending") => {
-  const todoURL = new URL("http://localhost:3000/todos");
+  const todoURL = new URL(BASE_URL);
 
   if (filter === "completed") todoURL.searchParams.set("completed", "true");
   if (filter === "pending") todoURL.searchParams.set("completed", "false");
@@ -15,7 +17,9 @@ export const getTodos = async (filter?: "completed" | "pending") => {
 };
 
 export const getTodoDetail = async (id: string) => {
-  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+  const todoDetailURL = new URL(`${BASE_URL}/${id}`);
+
+  const response = await fetch(todoDetailURL.toString(), {
     cache: "no-store",
   });
   const todo: Todo = await response.json();
@@ -24,7 +28,9 @@ export const getTodoDetail = async (id: string) => {
 };
 
 export const addTodo = async (title: string) => {
-  const response = await fetch("http://localhost:3000/todos", {
+  const todoURL = new URL(BASE_URL);
+
+  const response = await fetch(todoURL.toString(), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -38,7 +44,9 @@ export const addTodo = async (title: string) => {
 };
 
 export const deleteTodo = async (id: string) => {
-  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+  const todoDetailURL = new URL(`${BASE_URL}/${id}`);
+
+  const response = await fetch(todoDetailURL.toString(), {
     method: "DELETE",
   });
 
@@ -52,7 +60,9 @@ export const deleteTodo = async (id: string) => {
 };
 
 export const toggleTodo = async (id: string, completed: boolean) => {
-  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+  const todoDetailURL = new URL(`${BASE_URL}/${id}`);
+
+  const response = await fetch(todoDetailURL.toString(), {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
