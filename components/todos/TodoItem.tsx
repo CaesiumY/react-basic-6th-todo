@@ -1,20 +1,16 @@
 "use client";
 
-import {
-  useDeleteTodoMutation,
-  useToggleTodoMutation,
-} from "@/query/useTodoMutation";
+import { useToggleTodoMutation } from "@/query/useTodoMutation";
 import { Todo } from "@/types/todo.types";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
+import TodoDeleteButton from "./TodoDeleteButton";
 
 interface TodoItemProps {
   todo: Todo;
 }
 
 const TodoItem = ({ todo }: TodoItemProps) => {
-  const { mutate: deleteTodo } = useDeleteTodoMutation();
   const { mutate: toggleTodo } = useToggleTodoMutation();
 
   const { id, completed, title } = todo;
@@ -42,9 +38,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
       </div>
 
       <div className="flex flex-row gap-2">
-        <Button variant="destructive" onClick={() => deleteTodo(id)}>
-          삭제
-        </Button>
+        <TodoDeleteButton id={id} />
       </div>
     </div>
   );
