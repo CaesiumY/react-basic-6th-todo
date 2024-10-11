@@ -1,12 +1,12 @@
 import { getTodoDetail } from "@/api/todo-api";
-import TodoItem from "@/components/todos/TodoItem";
-import { Todo } from "@/types/todo.types";
+import TodoDetail from "@/components/todos/TodoDetail";
+import { Button } from "@/components/ui/button";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import React from "react";
+import Link from "next/link";
 
 interface TodoDetailPageProps {
   params: {
@@ -23,11 +23,16 @@ const TodoDetailPage = async ({ params }: TodoDetailPageProps) => {
     queryFn: () => getTodoDetail(id),
   });
 
-  const todo = queryClient.getQueryData<Todo>(["todos", id]);
-
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      {todo ? <TodoItem todo={todo} /> : <div>Todo not found</div>}
+      <div className="space-y-2">
+        <TodoDetail id={id} />
+        <div>
+          <Link href={"/"}>
+            <Button className="w-full">돌아가기</Button>
+          </Link>
+        </div>
+      </div>
     </HydrationBoundary>
   );
 };

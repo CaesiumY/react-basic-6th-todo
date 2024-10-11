@@ -14,12 +14,14 @@ import {
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface TodoDeleteButtonProps {
   id: string;
 }
 
 const TodoDeleteButton = ({ id }: TodoDeleteButtonProps) => {
+  const { replace } = useRouter();
   const { mutate: deleteTodo } = useDeleteTodoMutation();
 
   return (
@@ -42,7 +44,10 @@ const TodoDeleteButton = ({ id }: TodoDeleteButtonProps) => {
             <Button
               variant="destructive"
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={() => deleteTodo(id)}
+              onClick={() => {
+                deleteTodo(id);
+                replace("/");
+              }}
             >
               삭제
             </Button>
