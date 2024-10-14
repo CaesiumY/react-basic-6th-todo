@@ -15,9 +15,10 @@ import {
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Todo } from "@/types/todo.types";
 
 interface TodoDeleteButtonProps {
-  id: string;
+  id: Todo["id"];
 }
 
 const TodoDeleteButton = ({ id }: TodoDeleteButtonProps) => {

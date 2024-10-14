@@ -1,4 +1,5 @@
 import { addTodo, deleteTodo, toggleTodo } from "@/api/todo-api";
+import { Todo } from "@/types/todo.types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -36,7 +37,7 @@ export const useDeleteTodoMutation = () => {
 };
 
 interface ToggleTodoMutationParams {
-  id: string;
+  id: Todo["id"];
   completed: boolean;
 }
 

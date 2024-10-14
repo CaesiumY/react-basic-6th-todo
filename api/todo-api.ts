@@ -1,80 +1,72 @@
 import { Todo } from "@/types/todo.types";
-
-const BASE_URL = "http://localhost:3000/todos";
+import { createClient } from "@/utils/supabase/client";
 
 export const getTodos = async (filter?: "completed" | "pending") => {
-  const todoURL = new URL(BASE_URL);
+  const client = createClient();
 
-  if (filter === "completed") todoURL.searchParams.set("completed", "true");
-  if (filter === "pending") todoURL.searchParams.set("completed", "false");
+  const { data, error } = await client
+    .from("todos")
+    .select()
+    .eq("completed", filter === "completed");
 
-  const response = await fetch(todoURL.toString(), {
-    cache: "no-store",
-  });
-  const todos: Todo[] = await response.json();
+  if (error) {
+    throw Error(error.message);
+  }
 
-  return todos;
+  return data;
 };
 
-export const getTodoDetail = async (id: string) => {
-  const todoDetailURL = new URL(`${BASE_URL}/${id}`);
+export const getTodoDetail = async (id: Todo["id"]) => {
+  const client = createClient();
 
-  const response = await fetch(todoDetailURL.toString(), {
-    cache: "no-store",
-  });
-  const todo: Todo = await response.json();
+  const { data, error } = await client
+    .from("todos")
+    .select()
+    .eq("id", id)
+    .single();
 
-  return todo;
+  if (error) {
+    throw Error(error.message);
+  }
+
+  return data;
 };
 
 export const addTodo = async (title: string) => {
-  const todoURL = new URL(BASE_URL);
+  const client = createClient();
 
-  const response = await fetch(todoURL.toString(), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ title, completed: false }),
-  });
+  const { data, error } = await client.from("todos").insert({ title });
 
-  const todo: Todo = await response.json();
-
-  return todo;
-};
-
-export const deleteTodo = async (id: string) => {
-  const todoDetailURL = new URL(`${BASE_URL}/${id}`);
-
-  const response = await fetch(todoDetailURL.toString(), {
-    method: "DELETE",
-  });
-
-  if (!response.ok) {
-    throw new Error("삭제에 실패했습니다.");
+  if (error) {
+    throw Error(error.message);
   }
 
-  const todo: Todo = await response.json();
-
-  return todo;
+  return data;
 };
 
-export const toggleTodo = async (id: string, completed: boolean) => {
-  const todoDetailURL = new URL(`${BASE_URL}/${id}`);
+export const deleteTodo = async (id: Todo["id"]) => {
+  const client = createClient();
 
-  const response = await fetch(todoDetailURL.toString(), {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ completed }),
-  });
+  const { data, error } = await client.from("todos").delete().eq("id", id);
 
-  if (!response.ok) {
-    throw new Error("업데이트에 실패했습니다.");
+  if (error) {
+    throw Error(error.message);
   }
 
-  const todo: Todo = await response.json();
+  return data;
+};
 
-  return todo;
+export const toggleTodo = async (id: Todo["id"], completed: boolean) => {
+  const client = createClient();
+
+  const { data, error } = await client
+    .from("todos")
+    .update({ completed })
+    .eq("id", id);
+
+  if (error) {
+    throw Error(error.message);
+  }
+
+  return data;
 };

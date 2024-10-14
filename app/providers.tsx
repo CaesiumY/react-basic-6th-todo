@@ -4,9 +4,24 @@
 // 이 파일 맨 위에 'use client' 지시어를 추가해야 합니다.
 import {
   isServer,
+  MutationCache,
+  QueryCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { toast } from "sonner";
+
+const queryCache = new QueryCache({
+  onError: (error) => {
+    toast.error(error.message);
+  },
+});
+
+const mutationCache = new MutationCache({
+  onError: (error) => {
+    toast.error(error.message);
+  },
+});
 
 function makeQueryClient() {
   return new QueryClient({
@@ -17,6 +32,8 @@ function makeQueryClient() {
         staleTime: 60 * 1000,
       },
     },
+    mutationCache,
+    queryCache,
   });
 }
 
