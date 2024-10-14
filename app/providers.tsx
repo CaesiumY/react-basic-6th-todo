@@ -11,19 +11,19 @@ import {
 } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-const queryCache = new QueryCache({
-  onError: (error) => {
-    toast.error(error.message);
-  },
-});
-
-const mutationCache = new MutationCache({
-  onError: (error) => {
-    toast.error(error.message);
-  },
-});
-
 function makeQueryClient() {
+  const queryCache = new QueryCache({
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  const mutationCache = new MutationCache({
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
   return new QueryClient({
     defaultOptions: {
       queries: {
