@@ -2,9 +2,10 @@
 
 import { useTodoDetailQuery } from "@/query/useTodoQuery";
 import TodoItem from "./TodoItem";
+import { Todo } from "@/types/todo.types";
 
 interface TodoDetailProps {
-  id: string;
+  id: Todo["id"];
 }
 
 const TodoDetail = ({ id }: TodoDetailProps) => {

@@ -1,9 +1,10 @@
-import { Todo } from "@/types/todo.types";
+import { SupabaseDatabase, Todo } from "@/types/todo.types";
 import { createClient } from "@/utils/supabase/client";
 
-export const getTodos = async (filter?: "completed" | "pending") => {
-  const client = createClient();
-
+export const getTodos = async (
+  client: SupabaseDatabase,
+  filter?: "completed" | "pending"
+) => {
   const { data, error } = await client
     .from("todos")
     .select()
@@ -16,9 +17,10 @@ export const getTodos = async (filter?: "completed" | "pending") => {
   return data;
 };
 
-export const getTodoDetail = async (id: Todo["id"]) => {
-  const client = createClient();
-
+export const getTodoDetail = async (
+  client: SupabaseDatabase,
+  id: Todo["id"]
+) => {
   const { data, error } = await client
     .from("todos")
     .select()

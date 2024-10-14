@@ -5,6 +5,7 @@ import TodoForm from "@/components/todos/TodoForm";
 
 import TodoList from "@/components/todos/TodoList";
 import { Separator } from "@/components/ui/separator";
+import { createClient } from "@/utils/supabase/server";
 import {
   dehydrate,
   HydrationBoundary,
@@ -12,21 +13,22 @@ import {
 } from "@tanstack/react-query";
 
 const TodoPage = async () => {
+  const serverClient = createClient();
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ["todos", undefined],
-    queryFn: () => getTodos(),
+    queryFn: () => getTodos(serverClient),
   });
 
   await queryClient.prefetchQuery({
     queryKey: ["todos", "pending"],
-    queryFn: () => getTodos("pending"),
+    queryFn: () => getTodos(serverClient, "pending"),
   });
 
   await queryClient.prefetchQuery({
     queryKey: ["todos", "completed"],
-    queryFn: () => getTodos("completed"),
+    queryFn: () => getTodos(serverClient, "completed"),
   });
 
   return (
