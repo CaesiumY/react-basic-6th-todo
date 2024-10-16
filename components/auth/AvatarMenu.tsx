@@ -12,6 +12,7 @@ import {
 import { Button } from "../ui/button";
 import { CircleUser } from "lucide-react";
 import { signout } from "@/app/auth/actions";
+import Link from "next/link";
 
 const AvatarMenu = () => {
   return (
@@ -25,7 +26,11 @@ const AvatarMenu = () => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="/mypage" className="w-full">
+            My Page
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => signout()}>Logout</DropdownMenuItem>
       </DropdownMenuContent>

@@ -36,6 +36,28 @@ export const getTodoDetail = async (
   return data;
 };
 
+export const getMyTodos = async (client: SupabaseDatabase) => {
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+
+  if (!user) {
+    throw Error("User not found");
+  }
+
+  const { data, error } = await client
+    .from("todos")
+    .select(`*, author(*)`)
+    .eq("author", user?.id)
+    .returns<TodoWithAuthor[]>();
+
+  if (error) {
+    throw Error(error.message);
+  }
+
+  return data;
+};
+
 export const addTodo = async (title: string) => {
   const client = createClient();
 

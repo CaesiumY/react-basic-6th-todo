@@ -1,4 +1,4 @@
-import { getTodoDetail, getTodos } from "@/api/todo-api";
+import { getMyTodos, getTodoDetail, getTodos } from "@/api/todo-api";
 import { Todo } from "@/types/todo.types";
 import { createClient } from "@/utils/supabase/client";
 import { useQuery } from "@tanstack/react-query";
@@ -18,5 +18,14 @@ export const useTodoDetailQuery = (id: Todo["id"]) => {
   return useQuery({
     queryKey: ["todos", id],
     queryFn: () => getTodoDetail(browserClient, id),
+  });
+};
+
+export const useMyTodosQuery = () => {
+  const browserClient = createClient();
+
+  return useQuery({
+    queryKey: ["todos"],
+    queryFn: () => getMyTodos(browserClient),
   });
 };
