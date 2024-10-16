@@ -1,4 +1,5 @@
 import { getTodos } from "@/api/todo-api";
+import AvatarMenu from "@/components/auth/AvatarMenu";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
 import TodoController from "@/components/todos/TodoController";
 import TodoForm from "@/components/todos/TodoForm";
@@ -36,7 +37,10 @@ const TodoPage = async () => {
       <div className="flex flex-col gap-12">
         <section className="flex flex-row justify-between">
           <h1 className="font-black text-4xl">TODO LIST</h1>
-          <DarkModeToggle />
+          <div className="space-x-2">
+            <AvatarMenu />
+            <DarkModeToggle />
+          </div>
         </section>
 
         <Separator />
