@@ -9,36 +9,26 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createClient } from "@/utils/supabase/client";
-import { useQuery } from "@tanstack/react-query";
+import { useProfileQuery } from "@/query/useProfileQuery";
 
-export default function BrowserUserInfoCard() {
-  const { data } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const client = createClient();
-      const { data } = await client.auth.getUser();
-      const { user } = data;
+interface BrowserUserInfoCardProps {
+  userId: string;
+}
 
-      if (!user) {
-        return null;
-      }
+export default function BrowserUserInfoCard({
+  userId,
+}: BrowserUserInfoCardProps) {
+  const { data, isLoading } = useProfileQuery(userId);
 
-      const { data: profile } = await client
-        .from("profiles")
-        .select()
-        .eq("id", user?.id)
-        .single();
-
-      return profile;
-    },
-  });
-
-  if (!data) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  const { full_name: fullName, id: userId } = data;
+  if (!data) {
+    return <div>No data</div>;
+  }
+
+  const { full_name: fullName } = data;
 
   return (
     <Card>

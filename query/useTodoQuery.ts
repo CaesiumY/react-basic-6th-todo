@@ -1,5 +1,5 @@
-import { getMyTodos, getTodoDetail, getTodos } from "@/api/todo-api";
-import { Todo } from "@/types/todo.types";
+import { getUserTodos, getTodoDetail, getTodos } from "@/api/todo-api";
+import { Profile, Todo } from "@/types/todo.types";
 import { createClient } from "@/utils/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 
@@ -21,11 +21,11 @@ export const useTodoDetailQuery = (id: Todo["id"]) => {
   });
 };
 
-export const useMyTodosQuery = () => {
+export const useUserTodoQuery = (userId: Profile["id"]) => {
   const browserClient = createClient();
 
   return useQuery({
-    queryKey: ["todos"],
-    queryFn: () => getMyTodos(browserClient),
+    queryKey: ["todos", userId],
+    queryFn: () => getUserTodos(browserClient, userId),
   });
 };
