@@ -1,4 +1,4 @@
-import { SupabaseDatabase, Todo } from "@/types/todo.types";
+import { SupabaseDatabase, Todo, TodoWithAuthor } from "@/types/todo.types";
 import { createClient } from "@/utils/supabase/client";
 
 export const getTodos = async (
@@ -7,8 +7,9 @@ export const getTodos = async (
 ) => {
   const { data, error } = await client
     .from("todos")
-    .select()
-    .eq("completed", filter === "completed");
+    .select(`*, author(*)`)
+    .eq("completed", filter === "completed")
+    .returns<TodoWithAuthor[]>();
 
   if (error) {
     throw Error(error.message);
@@ -23,8 +24,9 @@ export const getTodoDetail = async (
 ) => {
   const { data, error } = await client
     .from("todos")
-    .select()
+    .select(`*, author(*)`)
     .eq("id", id)
+    .returns<TodoWithAuthor>()
     .single();
 
   if (error) {
