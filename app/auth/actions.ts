@@ -18,8 +18,10 @@ export async function login(formData: FormData) {
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
+  const searchParams = new URLSearchParams({ error: error?.message ?? "" });
+
   if (error) {
-    redirect("/error");
+    redirect("?" + searchParams.toString());
   }
 
   revalidatePath("/", "layout");
@@ -43,8 +45,10 @@ export async function signup(formData: FormData) {
 
   const { error } = await supabase.auth.signUp(data);
 
+  const searchParams = new URLSearchParams({ error: error?.message ?? "" });
+
   if (error) {
-    redirect("/error");
+    redirect("?" + searchParams.toString());
   }
 
   revalidatePath("/", "layout");
@@ -55,9 +59,10 @@ export const signout = async () => {
   const supabase = createClient();
 
   const { error } = await supabase.auth.signOut();
+  const searchParams = new URLSearchParams({ error: error?.message ?? "" });
 
   if (error) {
-    redirect("/error");
+    redirect(`/auth/error?${searchParams.toString()}`);
   }
 
   revalidatePath("/", "layout");
