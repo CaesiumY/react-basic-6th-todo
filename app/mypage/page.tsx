@@ -1,5 +1,5 @@
 import { getUserProfile } from "@/api/profile-api";
-import BrowserUserInfoCard from "@/components/auth/BrowswerUserInfoCard";
+import BrowserUserInfoCard from "@/components/auth/BrowserUserInfoCard";
 import UserInfoCard from "@/components/auth/UserInfoCard";
 import UserTodoList from "@/components/todos/UserTodoList";
 import { Button } from "@/components/ui/button";
